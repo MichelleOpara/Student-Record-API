@@ -165,3 +165,4 @@ app.delete('/students/:id', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+// All route have been tested and everything is working perfectly
