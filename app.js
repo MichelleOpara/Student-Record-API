@@ -1,8 +1,8 @@
 require("dotenv").config();
 const express = require("express");
+const validateStudent = require("./middleware/validateStudent");
 
 const app = express();
-
 const PORT = process.env.PORT || 5000;
 
 // Middleware
@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 });
 
 //CREATE -POST /students
-app.post('/students', (req, res) => {
+app.post('/students', validateStudent, (req, res) => {
   const { firstName, lastName, email, course, yearOfStudy } = req.body;
 
   if (!firstName || !lastName || !email || !course || !yearOfStudy) {
@@ -96,7 +96,7 @@ app.get('/students/:id', (req, res) => {
 });
 
 // UPDATE - PUT /students/:id
-app.put('/students/:id', (req, res) => {
+app.put('/students/:id', validateStudent, (req, res) => {
   const id = parseInt(req.params.id, 10);
 
   if (isNaN(id)) {
