@@ -8,10 +8,6 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(express.json());
 
-// Test route
-app.get("/", (req, res) => {
-  res.send("Student Record API is running");
-});
 //In-memory "database"
 let students = [];
 
@@ -35,7 +31,7 @@ app.post('/students', validateStudent, (req, res) => {
   if (!firstName || !lastName || !email || !course || !yearOfStudy) {
     return res.status(400).json({
       success: false,
-      Message: 'Missing required fields!'
+message: 'Missing required fields!'
     });
   }
   const newStudent = {
@@ -165,4 +161,4 @@ app.delete('/students/:id', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
-// All route have been tested and everything is working perfectly
+// All routes have been tested successfully.
